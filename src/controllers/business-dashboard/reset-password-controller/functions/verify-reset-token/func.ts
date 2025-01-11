@@ -1,5 +1,5 @@
 import { verifyToken } from "../../../../../configurations/jwt";
-import StaffMemberModel from "../../../../../entities/admin/staff-member/model";
+import AdminModel from "../../../../../entities/admin/model";
 import { ENUMHttpStatusCode } from "../../../../../enums/http-status-codes";
 import { IReturnObj } from "../../../../../interfaces/return-obj";
 import { trimInputs } from "../../../../../utils/trim-inputs";
@@ -41,10 +41,9 @@ export const VerifyResetToken = async (
     // START: VERIFY USER
     const { userId } = decodedData;
 
-    const account = await StaffMemberModel.findOne({
+    const account = await AdminModel.findOne({
       _id: userId,
-      "deletion.isDeleted": false,
-    }).select("_id email fullName avatar status");
+    }).select("_id email fullName");
 
     if (!account) {
       return {

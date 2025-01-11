@@ -1,7 +1,10 @@
-import StaffMemberModel from "../../../../../entities/admin/staff-member/model";
+import AdminModel from "../../../../../entities/admin/model";
 import { ENUMHttpStatusCode } from "../../../../../enums/http-status-codes";
 import { IReturnObj } from "../../../../../interfaces/return-obj";
-import { comparePassword, hashPassword } from "../../../../../services/bcrypt/functions";
+import {
+  comparePassword,
+  hashPassword,
+} from "../../../../../services/bcrypt/functions";
 import { trimInputs } from "../../../../../utils/trim-inputs";
 import { zodValidate } from "../../../../../utils/zod-validation";
 import { ISavePassword } from "../../interfaces/i";
@@ -28,9 +31,8 @@ export const SavePassword = async (
     // START: VERIFY CURRENT PASSWORD
     if (inputs.verifyCurrentPassword) {
       if (trimmedInputs.currentPassword) {
-        const account = await StaffMemberModel.findOne({
+        const account = await AdminModel.findOne({
           $or: [{ _id: trimmedInputs.userID }, { email: trimmedInputs.email }],
-          "deletion.isDeleted": false,
         }).select("password");
 
         if (!account) {
@@ -71,10 +73,9 @@ export const SavePassword = async (
     // ----------------------------------------------------------------
 
     // START: UPDATE PASSWORD
-    const updatedPassword = await StaffMemberModel.findOneAndUpdate(
+    const updatedPassword = await AdminModel.findOneAndUpdate(
       {
         $or: [{ _id: trimmedInputs.userID }, { email: trimmedInputs.email }],
-        "deletion.isDeleted": false,
       },
       {
         password: hashedPassword,

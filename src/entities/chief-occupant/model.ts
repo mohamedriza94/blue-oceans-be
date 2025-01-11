@@ -24,6 +24,10 @@ const ChiefOccupantSchema: Schema = new Schema({
     required: true,
     unique: true,
   },
+  password: {
+    type: String,
+    required: true,
+  },
   moveInDate: {
     type: Date,
     required: true,

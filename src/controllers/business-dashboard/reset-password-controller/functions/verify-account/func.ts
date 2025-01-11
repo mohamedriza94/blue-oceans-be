@@ -2,11 +2,9 @@ import { sendTransactionalEmail } from "../../../../../configurations/email-api/
 import { TEmailOptions } from "../../../../../configurations/email-api/types";
 import { generateToken } from "../../../../../configurations/jwt";
 import { BusinessDashboardPaths } from "../../../../../constants/frontend-paths/business-dashboard-paths";
-import { ENUMStaffMemberStatus } from "../../../../../entities/admin/staff-member/enum";
-import StaffMemberModel from "../../../../../entities/admin/staff-member/model";
+import AdminModel from "../../../../../entities/admin/model";
 import { ENUMHttpStatusCode } from "../../../../../enums/http-status-codes";
 import { IReturnObj } from "../../../../../interfaces/return-obj";
-import { envData } from "../../../../../constants/env-data";
 import { generateFrontendLink } from "../../../../../utils/generate-frontend-link";
 import { getValidityPeriodInWords } from "../../../../../utils/get-validity-period-in-words";
 import { trimInputs } from "../../../../../utils/trim-inputs";
@@ -33,22 +31,14 @@ export const VerifyAccount = async (
     // ----------------------------------------------------------------
 
     // START: VERIFY ACCOUNT
-    const account = await StaffMemberModel.findOne({
+    const account = await AdminModel.findOne({
       email: trimmedInputs.email,
-      "deletion.isDeleted": false,
     }).select("-password");
 
     if (!account) {
       return {
         statusCode: ENUMHttpStatusCode.CONFLICT,
         message: ["Account not found"],
-      };
-    }
-
-    if (account.status != ENUMStaffMemberStatus.active) {
-      return {
-        statusCode: ENUMHttpStatusCode.CONFLICT,
-        message: ["Account is not active. Please contact Admin"],
       };
     }
     // END: VERIFY ACCOUNT

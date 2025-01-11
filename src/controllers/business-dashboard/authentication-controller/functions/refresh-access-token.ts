@@ -35,7 +35,7 @@ export const RefreshAccessToken = async (
     }
 
     if (decodedRefreshToken.userType == ENUMUserTypes.Admin) {
-      user = await ChiefOccupantModel.findOne({
+      user = await ChiefOccupantModel.exists({
         _id: decodedRefreshToken._id,
         status: "Active",
       });

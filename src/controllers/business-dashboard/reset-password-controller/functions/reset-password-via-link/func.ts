@@ -18,9 +18,7 @@ export const ResetPasswordViaLink = async (
     if (isTokenBlacklisted) {
       return {
         statusCode: ENUMHttpStatusCode.BAD_REQUEST,
-        message: [
-          "This link has already been used. Please get a new one.",
-        ],
+        message: ["This link has already been used. Please get a new one."],
       };
     }
 
@@ -77,7 +75,7 @@ export const ResetPasswordViaLink = async (
     // END: SEND PASSWORD RESET SUCCESS EMAIL
 
     BlacklistToken(inputs.token);
-    
+
     return savePasswordResult;
     // END: UPDATE PASSWORD
   } catch (e) {
