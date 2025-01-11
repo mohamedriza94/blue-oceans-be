@@ -1,0 +1,43 @@
+import mongoose, { Schema, Document } from "mongoose";
+import { IChiefOccupant } from "./i";
+import { ImageSchema } from "../../schemas/mongoose/image-schema";
+
+export interface IChiefOccupantDocument extends IChiefOccupant, Document {}
+
+const ChiefOccupantSchema: Schema = new Schema({
+  apartmentId: {
+    type: Schema.Types.ObjectId,
+    ref: "Apartment",
+    required: true,
+  },
+  image: ImageSchema,
+  fullName: {
+    type: String,
+    required: true,
+  },
+  contactNumber: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  moveInDate: {
+    type: Date,
+    required: true,
+  },
+  status: {
+    type: String,
+    enum: ["Active", "Inactive"],
+    default: "Active",
+  },
+});
+
+const ChiefOccupantModel = mongoose.model<IChiefOccupantDocument>(
+  "ChiefOccupant",
+  ChiefOccupantSchema
+);
+
+export default ChiefOccupantModel;
