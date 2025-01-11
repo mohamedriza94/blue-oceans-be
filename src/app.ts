@@ -8,7 +8,6 @@ import { swaggerSpecs } from "./configurations/swagger-options";
 import swaggerUi from "swagger-ui-express";
 import router from "./routers/main";
 import { envData } from "./constants/env-data";
-import { connectRedis } from "./configurations/redis";
 
 dotenv.config();
 const app = express();
@@ -22,9 +21,6 @@ app.use(cors);
 
 // Connect to MongoDB
 connectDB();
-
-// Connect to Redis
-connectRedis();
 
 // Set up Swagger UI
 app.use("/swagger-api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
