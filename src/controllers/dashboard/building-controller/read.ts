@@ -25,6 +25,17 @@ export const ReadManyBuildings = async (
       buildingName,
       address,
     } = cleanedParams as IBuildingQueryParams;
+
+    // Convert page and limit to numbers
+    const pageNumber = Number(page);
+    const limitNumber = Number(limit);
+
+    if (isNaN(pageNumber) || isNaN(limitNumber)) {
+      return {
+        statusCode: ENUMHttpStatusCode.BAD_REQUEST,
+        message: ["Page and limit must be valid numbers"],
+      };
+    }
     // END : PROCESS PARAMS
 
     // ----------------------------------------------------------------
@@ -43,17 +54,35 @@ export const ReadManyBuildings = async (
     }
 
     // --- PAGINATION
-    const skip = (page - 1) * limit;
+    const skip = (pageNumber - 1) * limitNumber;
     // END : APPLYING PARAMS
 
     // ----------------------------------------------------------------
 
     // START : QUERYING THE DATABASE
-    const results = await BuildingModel.find(dbQuery)
-      .skip(skip)
-      .limit(limit)
-      .lean()
-      .exec();
+    const buildings = await BuildingModel.aggregate([
+      { $match: dbQuery },
+      {
+        $lookup: {
+          from: "apartments",
+          localField: "_id",
+          foreignField: "buildingId",
+          as: "apartments",
+        },
+      },
+      {
+        $addFields: {
+          apartmentCount: { $size: "$apartments" },
+        },
+      },
+      {
+        $project: {
+          apartments: 0,
+        },
+      },
+      { $skip: skip },
+      { $limit: limitNumber }, // Ensure this is a number
+    ]);
 
     const totalCount = await BuildingModel.countDocuments(dbQuery);
     // END : QUERYING THE DATABASE
@@ -64,12 +93,12 @@ export const ReadManyBuildings = async (
       statusCode: ENUMHttpStatusCode.OK,
       message: [],
       data: {
-        buildings: results,
+        buildings,
         pagination: {
           total: totalCount,
-          page,
-          limit,
-          totalPages: Math.ceil(totalCount / limit),
+          page: pageNumber,
+          limit: limitNumber,
+          totalPages: Math.ceil(totalCount / limitNumber),
         },
       },
     };

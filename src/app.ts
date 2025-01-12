@@ -25,7 +25,7 @@ connectDB();
 // Set up Swagger UI
 app.use("/swagger-api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
 
-app.use("/api/v1", router);
+app.use("/api", router);
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 

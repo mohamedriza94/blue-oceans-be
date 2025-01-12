@@ -7,6 +7,7 @@ import {
 } from "../controllers/dashboard/parking-slot-controller/read";
 import { UpdateParkingSlotStatus } from "../controllers/dashboard/parking-slot-controller/update-parking-slot-status";
 import { DeleteParkingSlot } from "../controllers/dashboard/parking-slot-controller/delete";
+import { ReadParkingSlotsOfBuilding } from "../controllers/dashboard/parking-slot-controller/read-parking-slots-of-a-building";
 
 const parkingRoutes = Router();
 
@@ -51,5 +52,17 @@ parkingRoutes.delete("/delete-parking-slot/:slotID", async (req, res) => {
   const response = await DeleteParkingSlot(req.params.slotID);
   return res.status(response.statusCode).json(response);
 });
+
+// --------------------------------
+
+parkingRoutes.get(
+  "/read-parking-slots-of-building/:buildingId",
+  async (req, res) => {
+    const response = await ReadParkingSlotsOfBuilding(req.params.buildingId);
+    return res.status(response.statusCode).json(response);
+  }
+);
+
+// --------------------------------
 
 export default parkingRoutes;

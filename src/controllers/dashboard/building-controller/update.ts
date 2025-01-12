@@ -66,6 +66,7 @@ export const UpdateBuilding = async (
 
     // START : PERFORM UPDATE
     if (Object.keys(modifiedFields).length > 0) {
+      console.log('modifiedFields', modifiedFields);
       await BuildingModel.findByIdAndUpdate(buildingID, modifiedFields, {
         new: true,
       });

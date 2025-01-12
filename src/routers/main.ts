@@ -6,6 +6,7 @@ import chiefOccupantRoutes from "./chief-occupant";
 import dependantRoutes from "./dependant";
 import authenticationRoutes from "./authentication";
 import resetPasswordRoutes from "./reset-password";
+import seedRoutes from "./seed";
 
 const router = express.Router();
 
@@ -16,5 +17,6 @@ router.use("/chief-occupant", chiefOccupantRoutes);
 router.use("/dependant", dependantRoutes);
 router.use("/authentication", authenticationRoutes);
 router.use("/password", resetPasswordRoutes);
+router.use("/seed", seedRoutes);
 
 export default router;
