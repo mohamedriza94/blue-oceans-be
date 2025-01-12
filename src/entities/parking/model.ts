@@ -11,8 +11,7 @@ const ParkingSchema: Schema = new Schema({
   },
   slotNumber: {
     type: String,
-    required: true,
-    unique: true,
+    required: true
   },
   status: {
     type: String,

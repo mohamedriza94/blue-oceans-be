@@ -3,6 +3,7 @@ import BuildingModel from "../../../entities/building/model";
 import ParkingModel from "../../../entities/parking/model";
 import { ENUMHttpStatusCode } from "../../../enums/http-status-codes";
 import { IReturnObj } from "../../../interfaces/return-obj";
+import { getAcronym } from "../../../utils/get-acronym";
 import { trimInputs } from "../../../utils/trim-inputs";
 import { zodValidate } from "../../../utils/zod-validation";
 import { ZOD_buildingSchema } from "./utils/zod-schema";
@@ -68,10 +69,11 @@ export const CreateBuilding = async (
 
     // START: CREATE PARKING SLOTS
     const parkingSlotsToCreate = [];
+    const buildingNameAcronym = getAcronym(trimmedInputs.buildingName);
     for (let i = 1; i <= trimmedInputs.parkingSlots; i++) {
       parkingSlotsToCreate.push({
         buildingId: newBuildingResult._id.toString(),
-        slotNumber: `Slot-${i}`,
+        slotNumber: `${buildingNameAcronym}-Slot-${i}`,
         status: "Available",
       });
     }
