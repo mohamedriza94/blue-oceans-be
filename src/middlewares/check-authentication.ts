@@ -1,12 +1,10 @@
 import { Request, Response, NextFunction } from "express";
 import { ENUMHttpStatusCode } from "../enums/http-status-codes";
 import { verifyToken } from "../configurations/jwt";
-import { generateCacheKey } from "../utils/generate-cache-key";
-import { redisCacheKeyPrefixes } from "../constants/redis-cache-key-prefixes";
-import { ENUMAuthTokenTypes } from "../controllers/business-dashboard/authentication-controller/functions/generate-auth-tokens";
 import AdminModel from "../entities/admin/model";
 import { ENUMUserTypes } from "../entities/admin/enums";
 import ChiefOccupantModel from "../entities/chief-occupant/model";
+import { ENUMAuthTokenTypes } from "../controllers/dashboard/authentication-controller/functions/generate-auth-tokens";
 
 export const checkAuthentication = async (
   req: Request,
@@ -60,7 +58,7 @@ export const checkAuthentication = async (
     }
 
     // Attach User Data to Request Object
-    req.body.currentUser = userData;
+    req.body.currentUser = { ...userData, userType: decodedData.userType };
     next();
   } catch (error) {
     console.error("Authentication error:", error);

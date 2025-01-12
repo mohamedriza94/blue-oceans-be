@@ -5,7 +5,7 @@ import { ENUMUserTypes } from "../entities/admin/enums";
 export const checkRoleAuthorization = (allowedRoles: ENUMUserTypes[]) => {
   return (req: Request, res: Response, next: NextFunction) => {
     try {
-      const userRoles: ENUMUserTypes[] = req.body.currentUser?.roles;
+      const userRoles: ENUMUserTypes[] = req.body.currentUser?.userType;
 
       // Check if user roles are available
       if (!userRoles || !Array.isArray(userRoles)) {
