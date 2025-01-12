@@ -5,6 +5,7 @@ import parkingRoutes from "./parking";
 import chiefOccupantRoutes from "./chief-occupant";
 import dependantRoutes from "./dependant";
 import authenticationRoutes from "./authentication";
+import resetPasswordRoutes from "./reset-password";
 
 const router = express.Router();
 
@@ -14,5 +15,6 @@ router.use("/parking", parkingRoutes);
 router.use("/chief-occupant", chiefOccupantRoutes);
 router.use("/dependant", dependantRoutes);
 router.use("/authentication", authenticationRoutes);
+router.use("/password", resetPasswordRoutes);
 
 export default router;

@@ -4,7 +4,7 @@ import { envData } from "../constants/env-data";
 const connectDB = async () => {
   try {
     const connectionString =
-      "mongodb+srv://administrator:yZkgjzLZz7fLiC9s@savorspreelocaldevelopm.vucvw.mongodb.net/riza-development";
+      "mongodb+srv://administrator:yZkgjzLZz7fLiC9s@savorspreelocaldevelopm.vucvw.mongodb.net/blue-oceans";
 
     await mongoose.connect(envData.mongodbURI || connectionString);
     console.log("MongoDB connected");
