@@ -3,5 +3,5 @@ export interface IReservation {
   apartmentId: string;
   reservationDate: Date;
   purpose: string;
-  status?: "Pending" | "Approved" | "Rejected" | "Completed";
+  status?: "Pending" | "Approved"| "Approved" | "Rejected" | "Completed";
 }
