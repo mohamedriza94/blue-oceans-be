@@ -20,6 +20,10 @@ const ApartmentSchema: Schema = new Schema({
     type: String,
     required: true,
   },
+  identification: {
+    type: String,
+    required: true,
+  },
   class: {
     type: String,
     enum: ["Luxury", "Standard", "Studio", "Penthouse", "Duplex"],
