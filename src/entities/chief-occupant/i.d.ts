@@ -7,6 +7,6 @@ export interface IChiefOccupant {
   contactNumber: string;
   email: string;
   password: string;
-  moveInDate: Date;
+  moveInDate?: Date;
   status?: "Active" | "Inactive";
 }

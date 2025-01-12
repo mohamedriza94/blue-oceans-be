@@ -30,7 +30,6 @@ const ChiefOccupantSchema: Schema = new Schema({
   },
   moveInDate: {
     type: Date,
-    required: true,
   },
   status: {
     type: String,
