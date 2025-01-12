@@ -9,11 +9,11 @@ import { zodValidate } from "../../../utils/zod-validation";
 import { ZOD_parkingSchema } from "./utils/zod-schema";
 
 export const CreateParkingSlot = async (
-  inputs: IParking & { buildingName?: string }
+  inputs: IParking
 ): Promise<IReturnObj> => {
   try {
     // START: INPUT DESTRUCTURING
-    const trimmedInputs = trimInputs(inputs);
+    const trimmedInputs: typeof inputs = trimInputs(inputs);
     // END: INPUT DESTRUCTURING
 
     // ----------------------------------------------------------------
