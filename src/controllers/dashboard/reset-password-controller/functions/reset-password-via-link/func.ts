@@ -66,7 +66,7 @@ export const ResetPasswordViaLink = async (
         id: "6",
         params: {
           firstName: firstName,
-          loginPageLink: BusinessDashboardPaths.LOGIN,
+          loginPageLink: BusinessDashboardPaths.CHIEF_OCCUPANT_LOGIN,
           email: account.email,
         },
       },

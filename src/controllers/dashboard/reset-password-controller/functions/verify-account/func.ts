@@ -2,7 +2,7 @@ import { sendTransactionalEmail } from "../../../../../configurations/email-api/
 import { TEmailOptions } from "../../../../../configurations/email-api/types";
 import { generateToken } from "../../../../../configurations/jwt";
 import { BusinessDashboardPaths } from "../../../../../constants/frontend-paths/business-dashboard-paths";
-import AdminModel from "../../../../../entities/admin/model";
+import ChiefOccupantModel from "../../../../../entities/chief-occupant/model";
 import { ENUMHttpStatusCode } from "../../../../../enums/http-status-codes";
 import { IReturnObj } from "../../../../../interfaces/return-obj";
 import { generateFrontendLink } from "../../../../../utils/generate-frontend-link";
@@ -31,7 +31,7 @@ export const VerifyAccount = async (
     // ----------------------------------------------------------------
 
     // START: VERIFY ACCOUNT
-    const account = await AdminModel.findOne({
+    const account = await ChiefOccupantModel.findOne({
       email: trimmedInputs.email,
     }).select("-password");
 

@@ -1,4 +1,4 @@
-import AdminModel from "../../../../../entities/admin/model";
+import ChiefOccupantModel from "../../../../../entities/chief-occupant/model";
 import { ENUMHttpStatusCode } from "../../../../../enums/http-status-codes";
 import { IReturnObj } from "../../../../../interfaces/return-obj";
 import {
@@ -31,7 +31,7 @@ export const SavePassword = async (
     // START: VERIFY CURRENT PASSWORD
     if (inputs.verifyCurrentPassword) {
       if (trimmedInputs.currentPassword) {
-        const account = await AdminModel.findOne({
+        const account = await ChiefOccupantModel.findOne({
           $or: [{ _id: trimmedInputs.userID }, { email: trimmedInputs.email }],
         }).select("password");
 
@@ -73,7 +73,7 @@ export const SavePassword = async (
     // ----------------------------------------------------------------
 
     // START: UPDATE PASSWORD
-    const updatedPassword = await AdminModel.findOneAndUpdate(
+    const updatedPassword = await ChiefOccupantModel.findOneAndUpdate(
       {
         $or: [{ _id: trimmedInputs.userID }, { email: trimmedInputs.email }],
       },
