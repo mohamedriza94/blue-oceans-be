@@ -88,6 +88,13 @@ export const CreateChiefOccupant = async (
     });
     await newOccupant.save();
 
+    // Update apartment
+    await ApartmentModel.findByIdAndUpdate(
+      trimmedInputs.apartmentId,
+      { status: "Occupied" },
+      { new: true }
+    );
+
     const { password, ...restNewAccountData } = newOccupant.toObject();
     // END : CREATE CHIEF OCCUPANT ACCOUNT
 
@@ -100,7 +107,7 @@ export const CreateChiefOccupant = async (
       subject: "Chief Occupant Account Credentials",
       templateType: "brevo",
       templateData: {
-        id: "3",
+        id: "11",
         params: {
           firstName: firstName,
           email: trimmedInputs.email,

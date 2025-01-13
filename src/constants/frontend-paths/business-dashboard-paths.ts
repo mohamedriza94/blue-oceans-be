@@ -7,5 +7,5 @@ export const BusinessDashboardPaths = {
   HOME: createPath("/"),
   RESET_PASSWORD: createPath("/authentication/reset-password"),
   LOGIN: createPath("/authentication/login"),
-  CHIEF_OCCUPANT_LOGIN: createPath("/chief-occupant/login"),
+  CHIEF_OCCUPANT_LOGIN: createPath("/authentication/chief-occupant-login"),
 } as const;
