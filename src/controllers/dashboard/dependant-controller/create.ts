@@ -47,6 +47,7 @@ export const CreateDependent = async (
     // START : CREATE DEPENDENT
     const newDependent = new DependentModel({
       ...trimmedInputs,
+      dateOfBirth: new Date(trimmedInputs.dateOfBirth),
     });
 
     await newDependent.save();

@@ -1,9 +1,7 @@
-import { IImage } from "../../interfaces/image";
-
 export interface IDependent {
   chiefOccupantId: string;
   fullName: string;
-  image: IImage;
+  image: string;
   relationship: string;
   contactNumber?: string;
   email?: string;

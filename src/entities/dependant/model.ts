@@ -14,7 +14,9 @@ const DependentSchema: Schema = new Schema({
     type: String,
     required: true,
   },
-  image: ImageSchema,
+  image: {
+    type: String,
+  },
   relationship: {
     type: String,
     required: true,

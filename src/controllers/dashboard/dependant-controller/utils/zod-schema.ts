@@ -8,9 +8,11 @@ export const ZOD_dependentSchema: z.ZodType<Partial<IDependent>> = z.object({
   contactNumber: z
     .string()
     .regex(/^\d{10,15}$/, "Invalid contact number")
-    .optional(),
-  email: z.string().email("Invalid email address").optional(),
-  dateOfBirth: z.date({
-    invalid_type_error: "Date of Birth must be a valid date",
-  }),
+    .optional()
+    .or(z.literal("")), // Allows an empty string
+  email: z
+    .string()
+    .email("Invalid email address")
+    .optional()
+    .or(z.literal("")), // Allows an empty string
 });
