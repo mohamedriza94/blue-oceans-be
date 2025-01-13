@@ -57,7 +57,7 @@ export const ReadManyChiefOccupants = async (
 
     // START : QUERYING THE DATABASE
     const results = await ChiefOccupantModel.find(dbQuery)
-      .populate("apartmentId", "description class status") // Populates apartment details
+      .populate("apartmentId") // Populates apartment details
       .skip(skip)
       .limit(limit)
       .lean()

@@ -68,6 +68,7 @@ export const ReadManyApartments = async (
 
     // START : QUERYING THE DATABASE
     const results = await ApartmentModel.find(dbQuery)
+      .populate("buildingId", "buildingName")
       .skip(skip)
       .limit(limit)
       .lean()

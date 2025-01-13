@@ -2,7 +2,7 @@ import { IImage } from "../../interfaces/image";
 
 export interface IChiefOccupant {
   apartmentId: string;
-  image: IImage;
+  image: string;
   fullName: string;
   contactNumber: string;
   email: string;

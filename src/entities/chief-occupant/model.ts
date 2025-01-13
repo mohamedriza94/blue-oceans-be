@@ -1,6 +1,5 @@
 import mongoose, { Schema, Document } from "mongoose";
 import { IChiefOccupant } from "./i";
-import { ImageSchema } from "../../schemas/mongoose/image-schema";
 
 export interface IChiefOccupantDocument extends IChiefOccupant, Document {}
 
@@ -10,7 +9,9 @@ const ChiefOccupantSchema: Schema = new Schema({
     ref: "Apartment",
     required: true,
   },
-  image: ImageSchema,
+  image: {
+    type: String,
+  },
   fullName: {
     type: String,
     required: true,

@@ -38,11 +38,7 @@ export const UpdateApartment = async (
     // ----------------------------------------------------------------
 
     // START : INPUT PROCESSING
-    if (inputs.buildingId) {
-      delete inputs.buildingId; // Prevent updating the buildingId directly
-    }
-
-    const trimmedInputs = trimInputs(inputs);
+    const trimmedInputs: typeof inputs = trimInputs(inputs);
 
     const validationErrors: IReturnObj | null = zodValidate(
       ZOD_apartmentSchema,
@@ -50,6 +46,10 @@ export const UpdateApartment = async (
     );
     if (validationErrors) {
       return validationErrors;
+    }
+
+    if (trimmedInputs.buildingId) {
+      delete trimmedInputs.buildingId; // Prevent updating the buildingId directly
     }
     // END : INPUT PROCESSING
 
@@ -69,6 +69,8 @@ export const UpdateApartment = async (
       await ApartmentModel.findByIdAndUpdate(apartmentID, modifiedFields, {
         new: true,
       });
+
+      console.log(modifiedFields);
 
       return {
         statusCode: ENUMHttpStatusCode.OK,
