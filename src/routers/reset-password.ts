@@ -39,7 +39,7 @@ resetPasswordRoutes.post(
     const { _id: userID, email } = req.body
       .currentUser as Partial<IChiefOccupant> & { _id: string };
     const payload: ISavePassword = {
-      userID,
+      userID: userID.toString(),
       email,
       password: req.body.newPassword,
       confirmedPassword: req.body.confirmedNewPassword,

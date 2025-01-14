@@ -20,7 +20,7 @@ export const ReadOneChiefOccupant = async (
 
     // START : FETCH RESULT
     const occupant = await ChiefOccupantModel.findOne({ _id: occupantID })
-      .populate("apartmentId", "description class status")
+      .populate("apartmentId")
       .lean();
 
     if (!occupant) {
