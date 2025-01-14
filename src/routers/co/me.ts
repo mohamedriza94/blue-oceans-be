@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { ReadOneChiefOccupant } from "../controllers/dashboard/chief-occupant-controller/read-one";
+import { ReadOneChiefOccupant } from "../../controllers/dashboard/chief-occupant-controller/read-one";
 
 const meRoutes = Router();
 
