@@ -12,8 +12,16 @@ import { IReturnObj } from "../../../interfaces/return-obj";
 import { trimInputs } from "../../../utils/trim-inputs";
 import { zodValidate } from "../../../utils/zod-validation";
 import { ZOD_leaseSchema } from "./utils/zod-schema";
-import { addMonths, differenceInMonths, startOfMonth, setDate } from "date-fns";
+import {
+  addMonths,
+  differenceInMonths,
+  startOfMonth,
+  setDate,
+  format,
+} from "date-fns";
 import DependentModel from "../../../entities/dependant/model";
+import { TEmailOptions } from "../../../configurations/email-api/types";
+import { sendTransactionalEmail } from "../../../configurations/email-api/brevo";
 
 interface ICreateLease extends Omit<ILease, "documentURLs"> {
   documentURLs: IImage[];
@@ -38,6 +46,8 @@ export const CreateLease = async (
       trimmedInputs
     );
     if (validationErrors) {
+      await session.abortTransaction();
+
       return validationErrors;
     }
     // END : INPUT VALIDATION CHECK
@@ -65,6 +75,8 @@ export const CreateLease = async (
       if (!isChiefOccupantActive)
         messages.push("Selected Chief Occupant is not active");
 
+      await session.abortTransaction();
+
       return {
         statusCode: ENUMHttpStatusCode.BAD_REQUEST,
         message: messages,
@@ -82,6 +94,8 @@ export const CreateLease = async (
       differenceInTime / (1000 * 60 * 60 * 24 * 30.44);
 
     if (approxDifferenceInMonths < 6 || start >= end) {
+      await session.abortTransaction();
+
       return {
         statusCode: ENUMHttpStatusCode.BAD_REQUEST,
         message: [
@@ -113,6 +127,8 @@ export const CreateLease = async (
     // START : CREATE RENT SLOTS
     const leaseId: IRent["leaseId"] = leaseResult.toObject()._id as string;
     if (!leaseId) {
+      await session.abortTransaction();
+
       return {
         statusCode: ENUMHttpStatusCode.BAD_REQUEST,
         message: ["Lease could not be created. Try again."],
@@ -165,14 +181,20 @@ export const CreateLease = async (
     const rentSlotsResult = await RentModel.insertMany(rentSlots, { session });
     // END : CREATE RENT SLOTS
 
+    // ----------------------------------------------------------------
+
     await ApartmentModel.findByIdAndUpdate(
       trimmedInputs.apartmentId,
       { status: "Occupied" },
       { session }
     );
 
-    const [involvedApartment, involvedOccupant, dependants] = await Promise.all(
-      [
+    // ----------------------------------------------------------------
+
+    // START : GET DETAILS TO RETURN
+    const leaseResultObj = leaseResult.toObject();
+    const [involvedApartment, involvedOccupant, dependants] =
+      (await Promise.all([
         ApartmentModel.findById(trimmedInputs.apartmentId)
           .populate("buildingId")
           .lean(),
@@ -182,8 +204,51 @@ export const CreateLease = async (
         DependentModel.find({
           chiefOccupantId: trimmedInputs.chiefOccupantId,
         }).lean(),
-      ]
-    );
+      ])) as any;
+    // END : GET DETAILS TO RETURN
+
+    // ----------------------------------------------------------------
+
+    // START : SEND EMAIL
+    const firstName = involvedOccupant?.fullName?.split(" ")[0];
+    const emailOptions: TEmailOptions = {
+      to: [{ email: involvedOccupant?.email ?? "", name: firstName }],
+      subject: "Lease Agreement",
+      templateType: "brevo",
+      templateData: {
+        id: "14",
+        params: {
+          firstName: firstName,
+          leaseIdentification: `#${leaseResultObj._id}`,
+          leaseStartDate: format(
+            new Date(leaseResultObj.startDate),
+            "dd MMMM yyyy"
+          ),
+          leaseEndDate: format(
+            new Date(leaseResultObj.endDate),
+            "dd MMMM yyyy"
+          ),
+          leaseRentAmountInUSD: leaseResultObj.rentAmountInUSD,
+          leaseSecurityDepositInUSD: leaseResultObj.securityDepositInUSD,
+          leasePaymentSchedule: leaseResultObj.paymentSchedule,
+          leaseStatus: leaseResultObj.status,
+          leaseTermsAndConditions: leaseResultObj.termsAndConditions,
+          relatedApartmentBuildingName:
+            involvedApartment?.buildingId?.buildingName,
+          relatedApartmentBuildingAddress:
+            involvedApartment?.buildingId?.address,
+          relatedApartmentIdentification: involvedApartment?.identification,
+          relatedApartmentClass: involvedApartment?.class,
+          relatedApartmentStatus: involvedApartment?.status,
+          dependantCount: dependants.length,
+        },
+      },
+    };
+
+    sendTransactionalEmail(emailOptions);
+    // END : SEND EMAIL
+
+    // ----------------------------------------------------------------
 
     await session.commitTransaction();
 
@@ -191,7 +256,7 @@ export const CreateLease = async (
       statusCode: ENUMHttpStatusCode.CREATED,
       message: ["Lease created successfully"],
       data: {
-        lease: leaseResult.toObject(),
+        lease: leaseResultObj,
         rentSlots: rentSlotsResult.map((slot) => slot.toObject()),
         apartment: involvedApartment,
         chiefOccupant: involvedOccupant,
