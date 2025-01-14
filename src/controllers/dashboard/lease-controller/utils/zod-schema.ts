@@ -1,11 +1,18 @@
 import { z } from "zod";
+import {
+  ENUMPaymentSchedule,
+} from "../../../../entities/lease/enum";
 import { ILease } from "../../../../entities/lease/i";
 
 export const ZOD_leaseSchema: z.ZodType<Partial<ILease>> = z.object({
-  chiefOccupantId: z.string().nonempty("Chief Occupant ID is required"),
   apartmentId: z.string().nonempty("Apartment ID is required"),
-  startDate: z.date({ required_error: "Start date is required" }),
-  endDate: z.date({ required_error: "End date is required" }),
-  leaseTerms: z.string().min(10, "Lease terms is required"),
-  status: z.enum(["Active", "Expired", "Terminated"]).optional(),
+  chiefOccupantId: z.string().nonempty("Chief Occupant ID is required"),
+  rentAmountInUSD: z.number().min(1, "Rent amount must be greater than 0"),
+  paymentSchedule: z.nativeEnum(ENUMPaymentSchedule, {
+    invalid_type_error: "Invalid payment schedule",
+  }),
+  securityDepositInUSD: z
+    .number()
+    .min(0, "Security deposit must be at least 0"),
+  termsAndConditions: z.string().min(1, "Terms and conditions are required"),
 });

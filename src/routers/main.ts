@@ -10,6 +10,7 @@ import seedRoutes from "./seed";
 import applicationRoutes from "./application";
 import meRoutes from "./co/me";
 import { checkAuthentication } from "../middlewares/check-authentication";
+import leaseRoutes from "./lease";
 
 const router = express.Router();
 
@@ -21,6 +22,7 @@ router.use("/dependant", dependantRoutes);
 router.use("/authentication", authenticationRoutes);
 router.use("/password", resetPasswordRoutes);
 router.use("/application", checkAuthentication, applicationRoutes);
+router.use("/lease", checkAuthentication, leaseRoutes);
 router.use("/seed", seedRoutes);
 
 // Chief Occupant Routes

@@ -19,7 +19,9 @@ export const ReadOneApartment = async (
     // ----------------------------------------------------------------
 
     // START : FETCH RESULT
-    const apartment = await ApartmentModel.findOne({ _id: apartmentID }).lean();
+    const apartment = await ApartmentModel.findOne({ _id: apartmentID })
+      .populate("buildingId")
+      .lean();
 
     if (!apartment) {
       return {
