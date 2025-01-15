@@ -1,0 +1,105 @@
+[{
+  "_id": {
+    "$oid": "67872c0e036f445f268db788"
+  },
+  "apartmentId": {
+    "$oid": "67872a40430cb0d05d4186e4"
+  },
+  "image": "https://res.cloudinary.com/dziodufj8/image/upload/v1736911886/temp/fybvpnhicsupfjcm2nqg.jpg",
+  "fullName": "Mohamed Riza",
+  "contactNumber": "0729353066",
+  "email": "mohamedriza94@gmail.com",
+  "password": "$2b$10$l.RqkLmCNNhdXjRA7TolWOD.LSoKdkYafkGiTSVMFahVl04qB2b/i",
+  "status": "Active",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67872c47036f445f268db79b"
+  },
+  "apartmentId": {
+    "$oid": "67872a40430cb0d05d4186e5"
+  },
+  "image": "https://res.cloudinary.com/dziodufj8/image/upload/v1736911943/temp/xwodebrqaj6pjpiwtmvn.jpg",
+  "fullName": "Shaheer",
+  "contactNumber": "0726586589",
+  "email": "shaheer@gmail.com",
+  "password": "$2b$10$iUlnOnERA3dyDSCJdqAh3OlspcC.rFmLr8FgcGZf/tKAYutGcGZQK",
+  "status": "Active",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67872c6d036f445f268db7a6"
+  },
+  "apartmentId": {
+    "$oid": "67872a40430cb0d05d4186e6"
+  },
+  "image": "https://res.cloudinary.com/dziodufj8/image/upload/v1736911981/temp/kbnrrz7brb8hjhvsteml.jpg",
+  "fullName": "Elvis Presley",
+  "contactNumber": "0729112353",
+  "email": "elvispresley@gmail.com",
+  "password": "$2b$10$Ysn9TLG4YiyPWGJJDg3PRecMg480yodV5rbjpbdBRiy4Sw1lS2crm",
+  "status": "Active",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67872c95036f445f268db7b1"
+  },
+  "apartmentId": {
+    "$oid": "67872a40430cb0d05d4186f1"
+  },
+  "image": "https://res.cloudinary.com/dziodufj8/image/upload/v1736912021/temp/mqsg9spp8jqlo5gjgocv.jpg",
+  "fullName": "Helen",
+  "contactNumber": "0724453535",
+  "email": "helen@gmail.com",
+  "password": "$2b$10$3j7qNMcb3ymfyMThEZq7Leh4VzzokOwTOYBqal1CesLXiMFfTIbh2",
+  "status": "Active",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67872e28036f445f268db7c8"
+  },
+  "apartmentId": {
+    "$oid": "67872a40430cb0d05d4186fd"
+  },
+  "image": "https://res.cloudinary.com/dziodufj8/image/upload/v1736912424/temp/nvuq56wyib0hwazsriw9.jpg",
+  "fullName": "Zulfa",
+  "contactNumber": "0776542356",
+  "email": "zfazie11@gmail.com",
+  "password": "$2b$10$P/fJmLB6rJQ/INj/8JlQGevhn1cgTZdzXNT3PHuv5xGMLzpjU7FF.",
+  "status": "Active",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67872e54036f445f268db7d3"
+  },
+  "apartmentId": {
+    "$oid": "67872a40430cb0d05d418715"
+  },
+  "image": "https://res.cloudinary.com/dziodufj8/image/upload/v1736912468/temp/n6buasqhjc7sfc67wnn2.jpg",
+  "fullName": "Praveen Kumar",
+  "contactNumber": "0765535565",
+  "email": "praveen@gmail.com",
+  "password": "$2b$10$TE8ITowFD.BnBa2.6gWo4eE5m18NmMmFl2/zlEOtxJhCbRWy4X/kW",
+  "status": "Active",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67872e7c036f445f268db7de"
+  },
+  "apartmentId": {
+    "$oid": "67872a40430cb0d05d418716"
+  },
+  "image": "https://res.cloudinary.com/dziodufj8/image/upload/v1736912507/temp/zcyzq57nvlxtijtxvw2h.jpg",
+  "fullName": "Ishara",
+  "contactNumber": "0712235658",
+  "email": "ishara@gmail.com",
+  "password": "$2b$10$MnNYZUp.ZQCHNHrlJaXETOU6TATISC6rGHhvhqAGy75HgCRH0tIKi",
+  "status": "Active",
+  "__v": 0
+}]

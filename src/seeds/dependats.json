@@ -1,0 +1,128 @@
+[
+  {
+    "chiefOccupantId": { "$oid": "67872e7c036f445f268db7de" },
+    "fullName": "Alice Johnson",
+    "image": "https://res.cloudinary.com/dziodufj8/image/upload/v1736911886/temp/fybvpnhicsupfjcm2nqg.jpg",
+    "relationship": "Spouse",
+    "contactNumber": "0712346001",
+    "email": "alice.johnson@example.com",
+    "dateOfBirth": { "$date": "1985-04-12T00:00:00Z" }
+  },
+  {
+    "chiefOccupantId": { "$oid": "67872e7c036f445f268db7de" },
+    "fullName": "Bobby Johnson",
+    "image": "https://res.cloudinary.com/dziodufj8/image/upload/v1736911886/temp/fybvpnhicsupfjcm2nqg.jpg",
+    "relationship": "Son",
+    "contactNumber": "0712346002",
+    "email": "bobby.johnson@example.com",
+    "dateOfBirth": { "$date": "2015-09-18T00:00:00Z" }
+  },
+  {
+    "chiefOccupantId": { "$oid": "67872e54036f445f268db7d3" },
+    "fullName": "Sarah Lee",
+    "image": "https://res.cloudinary.com/dziodufj8/image/upload/v1736911886/temp/fybvpnhicsupfjcm2nqg.jpg",
+    "relationship": "Spouse",
+    "contactNumber": "0712346003",
+    "email": "sarah.lee@example.com",
+    "dateOfBirth": { "$date": "1988-11-22T00:00:00Z" }
+  },
+  {
+    "chiefOccupantId": { "$oid": "67872e28036f445f268db7c8" },
+    "fullName": "Mark Spencer",
+    "image": "https://res.cloudinary.com/dziodufj8/image/upload/v1736911886/temp/fybvpnhicsupfjcm2nqg.jpg",
+    "relationship": "Spouse",
+    "contactNumber": "0712346004",
+    "email": "mark.spencer@example.com",
+    "dateOfBirth": { "$date": "1990-02-10T00:00:00Z" }
+  },
+  {
+    "chiefOccupantId": { "$oid": "67872e28036f445f268db7c8" },
+    "fullName": "Emily Spencer",
+    "image": "https://res.cloudinary.com/dziodufj8/image/upload/v1736911886/temp/fybvpnhicsupfjcm2nqg.jpg",
+    "relationship": "Daughter",
+    "contactNumber": "0712346005",
+    "email": "emily.spencer@example.com",
+    "dateOfBirth": { "$date": "2013-07-05T00:00:00Z" }
+  },
+  {
+    "chiefOccupantId": { "$oid": "67872e28036f445f268db7c8" },
+    "fullName": "Liam Spencer",
+    "image": "https://res.cloudinary.com/dziodufj8/image/upload/v1736911886/temp/fybvpnhicsupfjcm2nqg.jpg",
+    "relationship": "Son",
+    "contactNumber": "0712346006",
+    "email": "liam.spencer@example.com",
+    "dateOfBirth": { "$date": "2017-03-14T00:00:00Z" }
+  },
+  {
+    "chiefOccupantId": { "$oid": "67872c95036f445f268db7b1" },
+    "fullName": "Jane Miller",
+    "image": "https://res.cloudinary.com/dziodufj8/image/upload/v1736911886/temp/fybvpnhicsupfjcm2nqg.jpg",
+    "relationship": "Spouse",
+    "contactNumber": "0712346007",
+    "email": "jane.miller@example.com",
+    "dateOfBirth": { "$date": "1992-05-15T00:00:00Z" }
+  },
+  {
+    "chiefOccupantId": { "$oid": "67872c95036f445f268db7b1" },
+    "fullName": "Kevin Miller",
+    "image": "https://res.cloudinary.com/dziodufj8/image/upload/v1736911886/temp/fybvpnhicsupfjcm2nqg.jpg",
+    "relationship": "Son",
+    "contactNumber": "0712346008",
+    "email": "kevin.miller@example.com",
+    "dateOfBirth": { "$date": "2019-01-20T00:00:00Z" }
+  },
+  {
+    "chiefOccupantId": { "$oid": "67872c6d036f445f268db7a6" },
+    "fullName": "Emma Brown",
+    "image": "https://res.cloudinary.com/dziodufj8/image/upload/v1736911886/temp/fybvpnhicsupfjcm2nqg.jpg",
+    "relationship": "Spouse",
+    "contactNumber": "0712346009",
+    "email": "emma.brown@example.com",
+    "dateOfBirth": { "$date": "1986-03-11T00:00:00Z" }
+  },
+  {
+    "chiefOccupantId": { "$oid": "67872c47036f445f268db79b" },
+    "fullName": "John Wilson",
+    "image": "https://res.cloudinary.com/dziodufj8/image/upload/v1736911886/temp/fybvpnhicsupfjcm2nqg.jpg",
+    "relationship": "Spouse",
+    "contactNumber": "0712346010",
+    "email": "john.wilson@example.com",
+    "dateOfBirth": { "$date": "1980-09-09T00:00:00Z" }
+  },
+  {
+    "chiefOccupantId": { "$oid": "67872c47036f445f268db79b" },
+    "fullName": "Lily Wilson",
+    "image": "https://res.cloudinary.com/dziodufj8/image/upload/v1736911886/temp/fybvpnhicsupfjcm2nqg.jpg",
+    "relationship": "Daughter",
+    "contactNumber": "0712346011",
+    "email": "lily.wilson@example.com",
+    "dateOfBirth": { "$date": "2014-12-18T00:00:00Z" }
+  },
+  {
+    "chiefOccupantId": { "$oid": "67872c0e036f445f268db788" },
+    "fullName": "David Evans",
+    "image": "https://res.cloudinary.com/dziodufj8/image/upload/v1736911886/temp/fybvpnhicsupfjcm2nqg.jpg",
+    "relationship": "Spouse",
+    "contactNumber": "0712346012",
+    "email": "david.evans@example.com",
+    "dateOfBirth": { "$date": "1984-08-25T00:00:00Z" }
+  },
+  {
+    "chiefOccupantId": { "$oid": "67872c0e036f445f268db788" },
+    "fullName": "Chloe Evans",
+    "image": "https://res.cloudinary.com/dziodufj8/image/upload/v1736911886/temp/fybvpnhicsupfjcm2nqg.jpg",
+    "relationship": "Daughter",
+    "contactNumber": "0712346013",
+    "email": "chloe.evans@example.com",
+    "dateOfBirth": { "$date": "2018-10-30T00:00:00Z" }
+  },
+  {
+    "chiefOccupantId": { "$oid": "67872c0e036f445f268db788" },
+    "fullName": "Noah Evans",
+    "image": "https://res.cloudinary.com/dziodufj8/image/upload/v1736911886/temp/fybvpnhicsupfjcm2nqg.jpg",
+    "relationship": "Son",
+    "contactNumber": "0712346014",
+    "email": "noah.evans@example.com",
+    "dateOfBirth": { "$date": "2020-05-22T00:00:00Z" }
+  }
+]

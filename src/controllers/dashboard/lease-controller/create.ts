@@ -56,22 +56,14 @@ export const CreateLease = async (
 
     // START : CHECK
 
-    // Apartment availability
-    const isApartmentAvailable = await ApartmentModel.exists({
-      _id: trimmedInputs.apartmentId,
-      status: { $ne: "Occupied" },
-    });
-
     // Chief Occupant active
     const isChiefOccupantActive = await ChiefOccupantModel.exists({
       _id: trimmedInputs.chiefOccupantId, // Corrected to use `chiefOccupantId`
       status: "Active", // Fixed to check for "Active" status directly
     });
 
-    if (!isApartmentAvailable || !isChiefOccupantActive) {
+    if (!isChiefOccupantActive) {
       const messages = [];
-      if (!isApartmentAvailable)
-        messages.push("This Apartment is not available");
       if (!isChiefOccupantActive)
         messages.push("Selected Chief Occupant is not active");
 
@@ -180,14 +172,6 @@ export const CreateLease = async (
 
     const rentSlotsResult = await RentModel.insertMany(rentSlots, { session });
     // END : CREATE RENT SLOTS
-
-    // ----------------------------------------------------------------
-
-    await ApartmentModel.findByIdAndUpdate(
-      trimmedInputs.apartmentId,
-      { status: "Occupied" },
-      { session }
-    );
 
     // ----------------------------------------------------------------
 
