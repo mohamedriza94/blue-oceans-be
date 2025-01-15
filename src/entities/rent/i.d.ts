@@ -5,6 +5,7 @@ export interface IRent extends ITimestamp {
   _id?: string;
   leaseId: string;
   dueDate: Date;
+  penaltyAmount?: number;
   amount: number;
   paymentStatus: ENUMRentPaymentStatus;
   paymentDate?: Date;

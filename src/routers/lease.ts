@@ -5,6 +5,7 @@ import {
   ReadManyLeases,
 } from "../controllers/dashboard/lease-controller/read-many";
 import { ReadRentsOfLease } from "../controllers/dashboard/lease-controller/read-rents-of-lease";
+import { PayRent } from "../controllers/dashboard/lease-controller/pay-rent";
 
 const leaseRoutes = Router();
 
@@ -27,6 +28,13 @@ leaseRoutes.get("/read-many-leases", async (req, res) => {
 
 leaseRoutes.get("/read-rents-of-lease/:leaseId", async (req, res) => {
   const response = await ReadRentsOfLease(req.params.leaseId);
+  return res.status(response.statusCode).json(response);
+});
+
+// --------------------------------
+
+leaseRoutes.put("/pay-rent", async (req, res) => {
+  const response = await PayRent(req.body);
   return res.status(response.statusCode).json(response);
 });
 
