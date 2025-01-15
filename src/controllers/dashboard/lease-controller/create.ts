@@ -23,6 +23,7 @@ import DependentModel from "../../../entities/dependant/model";
 import { TEmailOptions } from "../../../configurations/email-api/types";
 import { sendTransactionalEmail } from "../../../configurations/email-api/brevo";
 import ParkingModel from "../../../entities/parking/model";
+import { ENUMLeaseStatus } from "../../../entities/lease/enum";
 
 interface ICreateLease extends Omit<ILease, "documentURLs"> {
   documentURLs: IImage[];
@@ -57,6 +58,18 @@ export const CreateLease = async (
     // ----------------------------------------------------------------
 
     // START : CHECK
+
+    // Check if a lease already exosts for this occupant
+    const isLeaseExists = await LeaseModel.exists({
+      chiefOccupantId: trimmedInputs.chiefOccupantId,
+      status: ENUMLeaseStatus.Active,
+    });
+    if (isLeaseExists) {
+      // return {
+      //   statusCode: ENUMHttpStatusCode.BAD_REQUEST,
+      //   message: ["This occupant already has an active lease"],
+      // };
+    }
 
     // Chief Occupant active
     const isChiefOccupantActive = await ChiefOccupantModel.exists({
@@ -174,8 +187,10 @@ export const CreateLease = async (
       parkingSlotNumbers = [firstParkingSlot.slotNumber];
 
       // Handle additional parking slots
-      trimmedInputs.additionalParkingSlots = Number(trimmedInputs.additionalParkingSlots);
-      
+      trimmedInputs.additionalParkingSlots = Number(
+        trimmedInputs.additionalParkingSlots
+      );
+
       if (trimmedInputs.additionalParkingSlots > 0) {
         let remainingSlots = availableParkingSlots.slice(1); // Skip the first slot which is already assigned
         let assignedCount = 0;
@@ -317,7 +332,6 @@ export const CreateLease = async (
             new Date(leaseResultObj.endDate),
             "dd MMMM yyyy"
           ),
-          leaseRentAmountInUSD: leaseResultObj.rentAmountInUSD,
           leaseSecurityDepositInUSD: leaseResultObj.securityDepositInUSD,
           leasePaymentSchedule: leaseResultObj.paymentSchedule,
           leaseStatus: leaseResultObj.status,
@@ -332,6 +346,12 @@ export const CreateLease = async (
           dependantCount: dependants.length,
           parkingSlotCharges,
           parkingSlotNumbers: parkingSlotNumbers.join(", "),
+          additionalParkingSlotCount: `${parkingSlotNumbers.length - 1} ($${
+            parkingSlotCharges / (parkingSlotNumbers.length - 1)
+          } per slot)`,
+          baseRentAmount: leaseResultObj.rentAmountInUSD,
+          leaseRentAmountInUSD:
+            leaseResultObj.rentAmountInUSD + parkingSlotCharges,
         },
       },
     };
