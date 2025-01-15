@@ -3,4 +3,5 @@ export interface IBuilding {
   telephone: string;
   address: string;
   parkingSlots: number; // Number of available parking slots
+  chargePerExtraParkingSlotInUSD: number;
 }

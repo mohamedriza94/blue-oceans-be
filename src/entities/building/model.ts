@@ -21,6 +21,10 @@ const BuildingSchema: Schema = new Schema({
     type: Number,
     required: true,
   },
+  chargePerExtraParkingSlotInUSD: {
+    type: Number,
+    required: true,
+  },
 });
 
 const BuildingModel = mongoose.model<IBuildingDocument>(

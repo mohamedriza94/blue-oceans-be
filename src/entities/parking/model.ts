@@ -11,12 +11,17 @@ const ParkingSchema: Schema = new Schema({
   },
   slotNumber: {
     type: String,
-    required: true
+    required: true,
   },
   status: {
     type: String,
     enum: ["Available", "Occupied"],
     default: "Available",
+  },
+  leaseId: {
+    type: Schema.Types.ObjectId,
+    ref: "Lease",
+    required: false,
   },
 });
 

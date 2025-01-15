@@ -1,0 +1,55 @@
+[{
+  "_id": {
+    "$oid": "678725b1ac63779b24d9b1b3"
+  },
+  "buildingName": "Maple Tower",
+  "telephone": "0712345678",
+  "address": "123 Maple Street, London, W1A 1AA, UK",
+  "parkingSlots": 50,
+  "chargePerExtraParkingSlotInUSD": 20,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "678725d4ac63779b24d9b1eb"
+  },
+  "buildingName": "Oak Plaza",
+  "telephone": "0712345679",
+  "address": "456 Oak Avenue, Birmingham, B1 1AA, UK",
+  "parkingSlots": 30,
+  "chargePerExtraParkingSlotInUSD": 35,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "678725fbac63779b24d9b20f"
+  },
+  "buildingName": "Pine Residency",
+  "telephone": "0712345680",
+  "address": "789 Pine Road, Manchester, M1 1AA, UK",
+  "parkingSlots": 40,
+  "chargePerExtraParkingSlotInUSD": 18,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67872613ac63779b24d9b23d"
+  },
+  "buildingName": "Cedar Heights",
+  "telephone": "0712345681",
+  "address": "101 Cedar Lane, Edinburgh, EH1 1AA, UK",
+  "parkingSlots": 35,
+  "chargePerExtraParkingSlotInUSD": 22,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67872631ac63779b24d9b266"
+  },
+  "buildingName": "Willow Estate",
+  "telephone": "0712345682",
+  "address": "202 Willow Boulevard, Bristol, BS1 1AA, UK",
+  "parkingSlots": 60,
+  "chargePerExtraParkingSlotInUSD": 15,
+  "__v": 0
+}]

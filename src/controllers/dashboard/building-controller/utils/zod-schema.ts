@@ -6,4 +6,7 @@ export const ZOD_buildingSchema: z.ZodType<Partial<IBuilding>> = z.object({
   telephone: z.string().regex(/^\d{10,15}$/, "Invalid telephone number"),
   address: z.string().min(1, "Address is required"),
   parkingSlots: z.number().min(0, "Parking slots must be 0 or more"),
+  chargePerExtraParkingSlotInUSD: z
+    .number()
+    .min(0, "Charge per extra parking slot must be at least 0"),
 });

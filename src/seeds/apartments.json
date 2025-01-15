@@ -1,0 +1,426 @@
+[
+  {
+    "buildingId": "678725b1ac63779b24d9b1b3",
+    "telephone": "0712345101",
+    "description": "Spacious 2-bedroom apartment with a modern kitchen and a balcony.",
+    "identification": "MT-A-1",
+    "class": "Luxury",
+    "status": "Available"
+  },
+  {
+    "buildingId": "678725b1ac63779b24d9b1b3",
+    "telephone": "0712345102",
+    "description": "1-bedroom apartment with an open living area and stylish decor.",
+    "identification": "MT-A-2",
+    "class": "Standard",
+    "status": "Available"
+  },
+  {
+    "buildingId": "678725b1ac63779b24d9b1b3",
+    "telephone": "0712345103",
+    "description": "Affordable studio apartment with great natural light and modern appliances.",
+    "identification": "MT-A-3",
+    "class": "Studio",
+    "status": "Available"
+  },
+  {
+    "buildingId": "678725b1ac63779b24d9b1b3",
+    "telephone": "0712345104",
+    "description": "Luxurious penthouse with 3 bedrooms, a private terrace, and scenic views.",
+    "identification": "MT-A-4",
+    "class": "Penthouse",
+    "status": "Available"
+  },
+  {
+    "buildingId": "678725b1ac63779b24d9b1b3",
+    "telephone": "0712345105",
+    "description": "Charming 2-bedroom duplex with a private entrance and a small garden.",
+    "identification": "MT-A-5",
+    "class": "Duplex",
+    "status": "Available"
+  },
+  {
+    "buildingId": "678725b1ac63779b24d9b1b3",
+    "telephone": "0712345106",
+    "description": "3-bedroom luxury apartment with an en-suite master bedroom and a large lounge.",
+    "identification": "MT-A-6",
+    "class": "Luxury",
+    "status": "Available"
+  },
+  {
+    "buildingId": "678725b1ac63779b24d9b1b3",
+    "telephone": "0712345107",
+    "description": "Compact 1-bedroom standard apartment with easy access to public transportation.",
+    "identification": "MT-A-7",
+    "class": "Standard",
+    "status": "Available"
+  },
+  {
+    "buildingId": "678725b1ac63779b24d9b1b3",
+    "telephone": "0712345108",
+    "description": "Modern 2-bedroom apartment with an open floor plan and a home office space.",
+    "identification": "MT-A-8",
+    "class": "Studio",
+    "status": "Available"
+  },
+  {
+    "buildingId": "678725b1ac63779b24d9b1b3",
+    "telephone": "0712345109",
+    "description": "Exclusive 4-bedroom penthouse with a private rooftop and premium amenities.",
+    "identification": "MT-A-9",
+    "class": "Penthouse",
+    "status": "Available"
+  },
+  {
+    "buildingId": "678725b1ac63779b24d9b1b3",
+    "telephone": "0712345110",
+    "description": "Beautiful 3-bedroom duplex with spacious interiors and a private driveway.",
+    "identification": "MT-A-10",
+    "class": "Duplex",
+    "status": "Available"
+  },
+  {
+    "buildingId": "678725d4ac63779b24d9b1eb",
+    "telephone": "0712345201",
+    "description": "Modern 2-bedroom apartment with a balcony and central heating.",
+    "identification": "OP-A-1",
+    "class": "Luxury",
+    "status": "Available"
+  },
+  {
+    "buildingId": "678725d4ac63779b24d9b1eb",
+    "telephone": "0712345202",
+    "description": "Compact studio apartment with open-plan living and city views.",
+    "identification": "OP-A-2",
+    "class": "Studio",
+    "status": "Available"
+  },
+  {
+    "buildingId": "678725d4ac63779b24d9b1eb",
+    "telephone": "0712345203",
+    "description": "Spacious 3-bedroom duplex with a private garden and modern kitchen.",
+    "identification": "OP-A-3",
+    "class": "Duplex",
+    "status": "Available"
+  },
+  {
+    "buildingId": "678725d4ac63779b24d9b1eb",
+    "telephone": "0712345204",
+    "description": "Exclusive penthouse with a private terrace and high-end furnishings.",
+    "identification": "OP-A-4",
+    "class": "Penthouse",
+    "status": "Available"
+  },
+  {
+    "buildingId": "678725d4ac63779b24d9b1eb",
+    "telephone": "0712345205",
+    "description": "Elegant 1-bedroom standard apartment with a stylish living area.",
+    "identification": "OP-A-5",
+    "class": "Standard",
+    "status": "Available"
+  },
+  {
+    "buildingId": "678725fbac63779b24d9b20f",
+    "telephone": "0712345301",
+    "description": "Spacious 2-bedroom luxury apartment with a large balcony and park views.",
+    "identification": "PR-A-1",
+    "class": "Luxury",
+    "status": "Available"
+  },
+  {
+    "buildingId": "678725fbac63779b24d9b20f",
+    "telephone": "0712345302",
+    "description": "Modern 1-bedroom standard apartment with a fully equipped kitchen.",
+    "identification": "PR-A-2",
+    "class": "Standard",
+    "status": "Available"
+  },
+  {
+    "buildingId": "678725fbac63779b24d9b20f",
+    "telephone": "0712345303",
+    "description": "Compact studio apartment with an open-plan design and plenty of natural light.",
+    "identification": "PR-A-3",
+    "class": "Studio",
+    "status": "Available"
+  },
+  {
+    "buildingId": "678725fbac63779b24d9b20f",
+    "telephone": "0712345304",
+    "description": "Elegant 2-bedroom duplex with a private garden and spacious living area.",
+    "identification": "PR-A-4",
+    "class": "Duplex",
+    "status": "Available"
+  },
+  {
+    "buildingId": "678725fbac63779b24d9b20f",
+    "telephone": "0712345305",
+    "description": "Exclusive 3-bedroom penthouse with a rooftop terrace and premium finishes.",
+    "identification": "PR-A-5",
+    "class": "Penthouse",
+    "status": "Available"
+  },
+  {
+    "buildingId": "678725fbac63779b24d9b20f",
+    "telephone": "0712345306",
+    "description": "1-bedroom standard apartment with large windows and a modern bathroom.",
+    "identification": "PR-A-6",
+    "class": "Standard",
+    "status": "Available"
+  },
+  {
+    "buildingId": "678725fbac63779b24d9b20f",
+    "telephone": "0712345307",
+    "description": "Stylish studio apartment with high ceilings and a compact yet functional layout.",
+    "identification": "PR-A-7",
+    "class": "Studio",
+    "status": "Available"
+  },
+  {
+    "buildingId": "678725fbac63779b24d9b20f",
+    "telephone": "0712345308",
+    "description": "Spacious 3-bedroom luxury apartment with two balconies and panoramic views.",
+    "identification": "PR-A-8",
+    "class": "Luxury",
+    "status": "Available"
+  },
+  {
+    "buildingId": "67872613ac63779b24d9b23d",
+    "telephone": "0712345401",
+    "description": "Spacious 2-bedroom luxury apartment with a private balcony and scenic views.",
+    "identification": "CH-A-1",
+    "class": "Luxury",
+    "status": "Available"
+  },
+  {
+    "buildingId": "67872613ac63779b24d9b23d",
+    "telephone": "0712345402",
+    "description": "Modern 1-bedroom standard apartment with stylish interiors and natural light.",
+    "identification": "CH-A-2",
+    "class": "Standard",
+    "status": "Available"
+  },
+  {
+    "buildingId": "67872613ac63779b24d9b23d",
+    "telephone": "0712345403",
+    "description": "Studio apartment with an open-concept design and premium fittings.",
+    "identification": "CH-A-3",
+    "class": "Studio",
+    "status": "Available"
+  },
+  {
+    "buildingId": "67872613ac63779b24d9b23d",
+    "telephone": "0712345404",
+    "description": "Exclusive 3-bedroom penthouse with a rooftop terrace and a private lounge.",
+    "identification": "CH-A-4",
+    "class": "Penthouse",
+    "status": "Available"
+  },
+  {
+    "buildingId": "67872613ac63779b24d9b23d",
+    "telephone": "0712345405",
+    "description": "Charming 2-bedroom duplex with a spacious garden and private entrance.",
+    "identification": "CH-A-5",
+    "class": "Duplex",
+    "status": "Available"
+  },
+  {
+    "buildingId": "67872613ac63779b24d9b23d",
+    "telephone": "0712345406",
+    "description": "Elegant 1-bedroom standard apartment with a modern kitchen and central heating.",
+    "identification": "CH-A-6",
+    "class": "Standard",
+    "status": "Available"
+  },
+  {
+    "buildingId": "67872613ac63779b24d9b23d",
+    "telephone": "0712345407",
+    "description": "Spacious 2-bedroom luxury apartment with premium hardwood flooring.",
+    "identification": "CH-A-7",
+    "class": "Luxury",
+    "status": "Available"
+  },
+  {
+    "buildingId": "67872613ac63779b24d9b23d",
+    "telephone": "0712345408",
+    "description": "Studio apartment with a functional layout and close proximity to public amenities.",
+    "identification": "CH-A-8",
+    "class": "Studio",
+    "status": "Available"
+  },
+  {
+    "buildingId": "67872613ac63779b24d9b23d",
+    "telephone": "0712345409",
+    "description": "3-bedroom penthouse with a large living area and a panoramic city view.",
+    "identification": "CH-A-9",
+    "class": "Penthouse",
+    "status": "Available"
+  },
+  {
+    "buildingId": "67872613ac63779b24d9b23d",
+    "telephone": "0712345410",
+    "description": "Stylish 2-bedroom duplex with a private patio and an open-plan living room.",
+    "identification": "CH-A-10",
+    "class": "Duplex",
+    "status": "Available"
+  },
+  {
+    "buildingId": "67872631ac63779b24d9b266",
+    "telephone": "0712345501",
+    "description": "Spacious 3-bedroom luxury apartment with a private balcony and garden views.",
+    "identification": "WE-A-1",
+    "class": "Luxury",
+    "status": "Available"
+  },
+  {
+    "buildingId": "67872631ac63779b24d9b266",
+    "telephone": "0712345502",
+    "description": "1-bedroom standard apartment with an open-plan living area and stylish interiors.",
+    "identification": "WE-A-2",
+    "class": "Standard",
+    "status": "Available"
+  },
+  {
+    "buildingId": "67872631ac63779b24d9b266",
+    "telephone": "0712345503",
+    "description": "Modern studio apartment with great lighting and high ceilings.",
+    "identification": "WE-A-3",
+    "class": "Studio",
+    "status": "Available"
+  },
+  {
+    "buildingId": "67872631ac63779b24d9b266",
+    "telephone": "0712345504",
+    "description": "Exclusive 4-bedroom penthouse with a private rooftop terrace and premium fittings.",
+    "identification": "WE-A-4",
+    "class": "Penthouse",
+    "status": "Available"
+  },
+  {
+    "buildingId": "67872631ac63779b24d9b266",
+    "telephone": "0712345505",
+    "description": "Charming 2-bedroom duplex with a spacious patio and private entrance.",
+    "identification": "WE-A-5",
+    "class": "Duplex",
+    "status": "Available"
+  },
+  {
+    "buildingId": "67872631ac63779b24d9b266",
+    "telephone": "0712345506",
+    "description": "1-bedroom studio apartment with modern decor and access to shared facilities.",
+    "identification": "WE-A-6",
+    "class": "Studio",
+    "status": "Available"
+  },
+  {
+    "buildingId": "67872631ac63779b24d9b266",
+    "telephone": "0712345507",
+    "description": "Luxury 2-bedroom apartment with wooden floors and a gourmet kitchen.",
+    "identification": "WE-A-7",
+    "class": "Luxury",
+    "status": "Available"
+  },
+  {
+    "buildingId": "67872631ac63779b24d9b266",
+    "telephone": "0712345508",
+    "description": "Spacious 3-bedroom standard apartment with built-in wardrobes and garden access.",
+    "identification": "WE-A-8",
+    "class": "Standard",
+    "status": "Available"
+  },
+  {
+    "buildingId": "67872631ac63779b24d9b266",
+    "telephone": "0712345509",
+    "description": "Exclusive penthouse with panoramic city views and premium furnishings.",
+    "identification": "WE-A-9",
+    "class": "Penthouse",
+    "status": "Available"
+  },
+  {
+    "buildingId": "67872631ac63779b24d9b266",
+    "telephone": "0712345510",
+    "description": "Studio apartment with smart home features and sleek design.",
+    "identification": "WE-A-10",
+    "class": "Studio",
+    "status": "Available"
+  },
+  {
+    "buildingId": "67872631ac63779b24d9b266",
+    "telephone": "0712345511",
+    "description": "2-bedroom duplex with a spacious living area and private patio.",
+    "identification": "WE-A-11",
+    "class": "Duplex",
+    "status": "Available"
+  },
+  {
+    "buildingId": "67872631ac63779b24d9b266",
+    "telephone": "0712345512",
+    "description": "Standard 1-bedroom apartment with a modern kitchen and easy city access.",
+    "identification": "WE-A-12",
+    "class": "Standard",
+    "status": "Available"
+  },
+  {
+    "buildingId": "67872631ac63779b24d9b266",
+    "telephone": "0712345513",
+    "description": "Luxury 3-bedroom apartment with two balconies and premium appliances.",
+    "identification": "WE-A-13",
+    "class": "Luxury",
+    "status": "Available"
+  },
+  {
+    "buildingId": "67872631ac63779b24d9b266",
+    "telephone": "0712345514",
+    "description": "Modern 2-bedroom duplex with high ceilings and contemporary design.",
+    "identification": "WE-A-14",
+    "class": "Duplex",
+    "status": "Available"
+  },
+  {
+    "buildingId": "67872631ac63779b24d9b266",
+    "telephone": "0712345515",
+    "description": "Penthouse with a private pool, sauna, and breathtaking rooftop views.",
+    "identification": "WE-A-15",
+    "class": "Penthouse",
+    "status": "Available"
+  },
+  {
+    "buildingId": "67872631ac63779b24d9b266",
+    "telephone": "0712345516",
+    "description": "Charming studio apartment with modern lighting and energy-efficient features.",
+    "identification": "WE-A-16",
+    "class": "Studio",
+    "status": "Available"
+  },
+  {
+    "buildingId": "67872631ac63779b24d9b266",
+    "telephone": "0712345517",
+    "description": "Elegant 1-bedroom standard apartment with plenty of natural light.",
+    "identification": "WE-A-17",
+    "class": "Standard",
+    "status": "Available"
+  },
+  {
+    "buildingId": "67872631ac63779b24d9b266",
+    "telephone": "0712345518",
+    "description": "Luxury 2-bedroom apartment with designer furniture and private parking.",
+    "identification": "WE-A-18",
+    "class": "Luxury",
+    "status": "Available"
+  },
+  {
+    "buildingId": "67872631ac63779b24d9b266",
+    "telephone": "0712345519",
+    "description": "Spacious 3-bedroom duplex with a home office and a private garden.",
+    "identification": "WE-A-19",
+    "class": "Duplex",
+    "status": "Available"
+  },
+  {
+    "buildingId": "67872631ac63779b24d9b266",
+    "telephone": "0712345520",
+    "description": "Exclusive 4-bedroom penthouse with floor-to-ceiling windows and a jacuzzi.",
+    "identification": "WE-A-20",
+    "class": "Penthouse",
+    "status": "Available"
+  }
+]
