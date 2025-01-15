@@ -22,9 +22,11 @@ import {
 import DependentModel from "../../../entities/dependant/model";
 import { TEmailOptions } from "../../../configurations/email-api/types";
 import { sendTransactionalEmail } from "../../../configurations/email-api/brevo";
+import ParkingModel from "../../../entities/parking/model";
 
 interface ICreateLease extends Omit<ILease, "documentURLs"> {
   documentURLs: IImage[];
+  additionalParkingSlots: number;
 }
 
 export const CreateLease = async (
@@ -116,6 +118,109 @@ export const CreateLease = async (
 
     // ----------------------------------------------------------------
 
+    // START : ASSIGN PARKING SLOTS
+
+    // Get related building
+    const relatedApartment = await ApartmentModel.findById(
+      trimmedInputs.apartmentId
+    )
+      .populate("buildingId")
+      .lean();
+
+    if (!relatedApartment || !relatedApartment.buildingId) {
+      await session.abortTransaction();
+      await session.endSession();
+      return {
+        statusCode: ENUMHttpStatusCode.BAD_REQUEST,
+        message: ["Related building was not found"],
+      };
+    }
+
+    const building: any = relatedApartment?.buildingId;
+
+    let parkingSlotCharges = 0;
+    let parkingSlotNumbers: string[] = [];
+
+    // Get available parking slots
+    const availableParkingSlots = await ParkingModel.find({
+      buildingId: building._id.toString(),
+      status: "Available",
+    }).lean();
+
+    if (availableParkingSlots.length === 0) {
+      // Reduce charges if no parking slot is available
+      parkingSlotCharges -= Number(building.chargePerExtraParkingSlotInUSD);
+    } else {
+      // Assign first parking slot - First parking slot is free
+      const firstParkingSlot = await ParkingModel.findByIdAndUpdate(
+        availableParkingSlots[0]._id,
+        {
+          leaseId: leaseResult._id,
+          status: "Occupied",
+        },
+        { new: true }
+      );
+
+      if (!firstParkingSlot) {
+        await session.abortTransaction();
+        await session.endSession();
+        return {
+          statusCode: ENUMHttpStatusCode.BAD_REQUEST,
+          message: ["Parking slot could not be assigned"],
+        };
+      }
+
+      // Store the first free parking slot number
+      parkingSlotNumbers = [firstParkingSlot.slotNumber];
+
+      // Handle additional parking slots
+      trimmedInputs.additionalParkingSlots = Number(trimmedInputs.additionalParkingSlots);
+      
+      if (trimmedInputs.additionalParkingSlots > 0) {
+        let remainingSlots = availableParkingSlots.slice(1); // Skip the first slot which is already assigned
+        let assignedCount = 0;
+
+        for (let i = 0; i < trimmedInputs.additionalParkingSlots; i++) {
+          if (remainingSlots.length === 0) {
+            break; // No more slots available
+          }
+
+          const additionalSlot = await ParkingModel.findByIdAndUpdate(
+            remainingSlots[0]._id,
+            {
+              leaseId: leaseResult._id,
+              status: "Occupied",
+            },
+            { new: true }
+          );
+
+          if (!additionalSlot) {
+            return {
+              statusCode: ENUMHttpStatusCode.BAD_REQUEST,
+              message: [],
+            };
+          }
+
+          parkingSlotNumbers.push(additionalSlot.slotNumber);
+          parkingSlotCharges += Number(building.chargePerExtraParkingSlotInUSD); // Increase charges
+          remainingSlots = remainingSlots.slice(1); // Remove the assigned slot from the list
+          assignedCount++;
+        }
+
+        if (assignedCount < trimmedInputs.additionalParkingSlots) {
+          return {
+            statusCode: ENUMHttpStatusCode.BAD_REQUEST,
+            message: [
+              `Only ${assignedCount} additional parking slots assigned out of requested ${trimmedInputs.additionalParkingSlots}`,
+            ],
+          };
+        }
+      }
+    }
+    // END : ASSIGN PARKING SLOTS
+
+    // ----------------------------------------------------------------
+
     // START : CREATE RENT SLOTS
     const leaseId: IRent["leaseId"] = leaseResult.toObject()._id as string;
     if (!leaseId) {
@@ -138,7 +243,7 @@ export const CreateLease = async (
       const currentMonth = addMonths(startOfMonth(new Date(startDate)), i);
       const dueDate = setDate(currentMonth, 25);
 
-      let amount = rentAmountInUSD;
+      let amount = rentAmountInUSD + parkingSlotCharges;
 
       if (i === 0) {
         const daysInFirstMonth = new Date(
@@ -225,6 +330,8 @@ export const CreateLease = async (
           relatedApartmentClass: involvedApartment?.class,
           relatedApartmentStatus: involvedApartment?.status,
           dependantCount: dependants.length,
+          parkingSlotCharges,
+          parkingSlotNumbers: parkingSlotNumbers.join(", "),
         },
       },
     };
@@ -245,6 +352,8 @@ export const CreateLease = async (
         apartment: involvedApartment,
         chiefOccupant: involvedOccupant,
         dependants,
+        parkingSlotCharges,
+        parkingSlotNumbers,
       },
     };
 
