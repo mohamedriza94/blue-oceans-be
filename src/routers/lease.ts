@@ -11,6 +11,8 @@ import {
   ReadRentsForOccupant,
 } from "../controllers/dashboard/lease-controller/read-rents-for-occupant";
 import { GetOccupantLease } from "../controllers/dashboard/lease-controller/get-occupant-lease";
+import { DetailedLeaseForOccupant } from "../controllers/dashboard/lease-controller/read-detailed-lease-for-occupant";
+import { GetOccupantLeaseList } from "../controllers/dashboard/lease-controller/get-occupant-lease-list";
 
 const leaseRoutes = Router();
 
@@ -55,6 +57,20 @@ leaseRoutes.get("/read-many-rents", async (req, res) => {
 
 leaseRoutes.get("/get-occupant-lease/:chiefOccupantId", async (req, res) => {
   const response = await GetOccupantLease(req.params.chiefOccupantId);
+  return res.status(response.statusCode).json(response);
+});
+
+// --------------------------------
+
+leaseRoutes.get("/read-detailed-occupant-lease/:chiefOccupantId", async (req, res) => {
+  const response = await DetailedLeaseForOccupant(req.params.chiefOccupantId);
+  return res.status(response.statusCode).json(response);
+});
+
+// --------------------------------
+
+leaseRoutes.get("/get-occupant-lease-list/:chiefOccupantId", async (req, res) => {
+  const response = await GetOccupantLeaseList(req.params.chiefOccupantId);
   return res.status(response.statusCode).json(response);
 });
 
