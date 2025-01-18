@@ -3,9 +3,11 @@ import BuildingModel from "../../../entities/building/model";
 import ChiefOccupantModel from "../../../entities/chief-occupant/model";
 import ExtensionRequestModel from "../../../entities/extension-request/model";
 import { ENUMLeaseStatus } from "../../../entities/lease/enum";
+import { ILease } from "../../../entities/lease/i";
 import LeaseModel from "../../../entities/lease/model";
 import { ENUMHttpStatusCode } from "../../../enums/http-status-codes";
 import { IReturnObj } from "../../../interfaces/return-obj";
+import { format, parseISO, getMonth, startOfYear, endOfYear } from "date-fns";
 
 export const GetDashboardData = async (): Promise<IReturnObj> => {
   try {
@@ -104,6 +106,49 @@ export const GetDashboardData = async (): Promise<IReturnObj> => {
     return {
       statusCode: ENUMHttpStatusCode.INTERNAL_SERVER_ERROR,
       message: ["Internal Server Error"],
+    };
+  }
+};
+
+export const LoadLeasesForChart = async (year: number): Promise<IReturnObj> => {
+  try {
+    // Ensure proper filtering by using UTC date ranges
+    const startOfYearUTC = new Date(Date.UTC(year, 0, 1, 0, 0, 0));
+    const endOfYearUTC = new Date(Date.UTC(year, 11, 31, 23, 59, 59));
+
+    const leases = await LeaseModel.find({
+      startDate: {
+        $gte: startOfYearUTC,
+        $lte: endOfYearUTC,
+      },
+    });
+
+    const monthsData = Array.from({ length: 12 }, (_, i) => ({
+      month: format(new Date(2020, i, 1), 'MMMM'), // Use a fixed year for month names
+      leases: 0,
+    }));
+
+    // Aggregate leases by month
+    leases.forEach((lease) => {
+      try {
+        const startDate = parseISO(lease.startDate.toISOString()); // Ensure consistent parsing
+        const monthIndex = getMonth(startDate); // Get the correct month index (0-11)
+        monthsData[monthIndex].leases += 1;
+      } catch (innerError) {
+        console.error('Error processing lease:', { lease, innerError });
+      }
+    });
+
+    return {
+      statusCode: ENUMHttpStatusCode.OK,
+      message: [],
+      data: monthsData,
+    };
+  } catch (error) {
+    console.error('lease-chart error:', error);
+    return {
+      statusCode: ENUMHttpStatusCode.INTERNAL_SERVER_ERROR,
+      message: ['Internal Server Error'],
     };
   }
 };
