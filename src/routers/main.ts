@@ -13,6 +13,7 @@ import { checkAuthentication } from "../middlewares/check-authentication";
 import leaseRoutes from "./lease";
 import notificationRoutes from "./notification";
 import extensionRequestRoutes from "./extension-request";
+import dashboardRoutes from "./dashboard";
 
 const router = express.Router();
 
@@ -28,6 +29,7 @@ router.use("/lease", checkAuthentication, leaseRoutes);
 router.use("/seed", seedRoutes);
 router.use("/notification", notificationRoutes);
 router.use("/extension-request", extensionRequestRoutes);
+router.use("/dashboard", dashboardRoutes);
 
 // Chief Occupant Routes
 router.use("/me", checkAuthentication, meRoutes);
