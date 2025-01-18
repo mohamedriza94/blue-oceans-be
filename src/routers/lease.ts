@@ -14,6 +14,8 @@ import { GetOccupantLease } from "../controllers/dashboard/lease-controller/get-
 import { DetailedLeaseForOccupant } from "../controllers/dashboard/lease-controller/read-detailed-lease-for-occupant";
 import { GetOccupantLeaseList } from "../controllers/dashboard/lease-controller/get-occupant-lease-list";
 import { ExtendLease } from "../controllers/dashboard/lease-controller/extend-lease";
+import { envData } from "../constants/env-data";
+import { ENUMHttpStatusCode } from "../enums/http-status-codes";
 
 const leaseRoutes = Router();
 
@@ -44,6 +46,22 @@ leaseRoutes.get("/read-rents-of-lease/:leaseId", async (req, res) => {
 leaseRoutes.put("/pay-rent", async (req, res) => {
   const response = await PayRent(req.body);
   return res.status(response.statusCode).json(response);
+});
+
+// --------------------------------
+
+leaseRoutes.get("/pay-rent-stripe-callback/:rentId", async (req, res) => {
+  const response = await PayRent({ rentId: req.params.rentId });
+
+  if (response.statusCode == ENUMHttpStatusCode.OK) {
+    return res.redirect(
+      `${envData.frontendBusinessDashboardURI}/co/rent?rent-payment-confirmation=success`
+    );
+  } else {
+    return res.redirect(
+      `${envData.frontendBusinessDashboardURI}/co/rent?rent-payment-confirmation=failed`
+    );
+  }
 });
 
 // --------------------------------

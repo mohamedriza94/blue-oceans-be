@@ -24,6 +24,7 @@ import { TEmailOptions } from "../../../configurations/email-api/types";
 import { sendTransactionalEmail } from "../../../configurations/email-api/brevo";
 import ParkingModel from "../../../entities/parking/model";
 import { ENUMLeaseStatus } from "../../../entities/lease/enum";
+import { createPaymentIntent } from "../../../services/stripe/payment-intent";
 
 interface ICreateLease extends Omit<ILease, "documentURLs"> {
   documentURLs: IImage[];
@@ -247,8 +248,7 @@ export const CreateLease = async (
       };
     }
 
-    const { startDate, endDate, rentAmountInUSD } =
-      trimmedInputs;
+    const { startDate, endDate, rentAmountInUSD } = trimmedInputs;
 
     const totalMonths =
       differenceInMonths(new Date(endDate), new Date(startDate)) + 1;
@@ -282,11 +282,19 @@ export const CreateLease = async (
         amount = (endDay / daysInLastMonth) * rentAmountInUSD;
       }
 
+      const paymentIntent = await createPaymentIntent({
+        total: Math.round(amount),
+        description: `rent for ${leaseId} ${dueDate}`,
+        transferGroup: `rent for ${leaseId}`,
+      });
+
       rentSlots.push({
         leaseId,
         dueDate,
         amount: Math.round(amount),
         paymentStatus: ENUMRentPaymentStatus.Pending,
+        paymentIntentId: paymentIntent.id,
+        clientSecret: paymentIntent.client_secret,
       });
     }
 

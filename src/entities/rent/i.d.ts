@@ -10,4 +10,6 @@ export interface IRent extends ITimestamp {
   paymentStatus: ENUMRentPaymentStatus;
   paymentDate?: Date;
   remarks?: string;
+  paymentIntentId?: string;
+  clientSecret?: string | null;
 }

@@ -25,7 +25,7 @@ router.use("/dependant", dependantRoutes);
 router.use("/authentication", authenticationRoutes);
 router.use("/password", resetPasswordRoutes);
 router.use("/application", checkAuthentication, applicationRoutes);
-router.use("/lease", checkAuthentication, leaseRoutes);
+router.use("/lease", leaseRoutes);
 router.use("/seed", seedRoutes);
 router.use("/notification", notificationRoutes);
 router.use("/extension-request", extensionRequestRoutes);

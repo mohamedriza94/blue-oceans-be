@@ -37,6 +37,12 @@ const RentSchema: Schema = new Schema(
       type: String,
       required: false,
     },
+    paymentIntentId: {
+      type: String,
+    },
+    clientSecret: {
+      type: String,
+    },
   },
   { timestamps: true }
 );

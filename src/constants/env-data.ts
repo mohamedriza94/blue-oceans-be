@@ -15,4 +15,5 @@ export const envData = {
     apiKey: process.env.CLOUDINARY_API_KEY,
     cloudName: process.env.CLOUDINARY_CLOUD_NAME,
   },
+  stripeApiKey: process.env.STRIPE_API_KEY,
 };
