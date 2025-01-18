@@ -247,7 +247,7 @@ export const CreateLease = async (
       };
     }
 
-    const { startDate, endDate, rentAmountInUSD, paymentSchedule } =
+    const { startDate, endDate, rentAmountInUSD } =
       trimmedInputs;
 
     const totalMonths =

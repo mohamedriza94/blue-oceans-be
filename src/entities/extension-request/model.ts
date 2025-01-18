@@ -17,7 +17,6 @@ const ExtensionRequestSchema: Schema = new Schema({
   },
   reason: {
     type: String,
-    required: true,
   },
   status: {
     type: String,

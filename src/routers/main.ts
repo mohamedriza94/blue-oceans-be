@@ -11,6 +11,8 @@ import applicationRoutes from "./application";
 import meRoutes from "./co/me";
 import { checkAuthentication } from "../middlewares/check-authentication";
 import leaseRoutes from "./lease";
+import notificationRoutes from "./notification";
+import extensionRequestRoutes from "./extension-request";
 
 const router = express.Router();
 
@@ -24,6 +26,8 @@ router.use("/password", resetPasswordRoutes);
 router.use("/application", checkAuthentication, applicationRoutes);
 router.use("/lease", checkAuthentication, leaseRoutes);
 router.use("/seed", seedRoutes);
+router.use("/notification", notificationRoutes);
+router.use("/extension-request", extensionRequestRoutes);
 
 // Chief Occupant Routes
 router.use("/me", checkAuthentication, meRoutes);

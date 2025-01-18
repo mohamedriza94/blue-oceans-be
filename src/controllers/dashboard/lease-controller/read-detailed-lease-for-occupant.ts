@@ -1,6 +1,8 @@
 import ApartmentModel from "../../../entities/apartment/model";
 import ChiefOccupantModel from "../../../entities/chief-occupant/model";
 import DependentModel from "../../../entities/dependant/model";
+import { ENUMExtRequest } from "../../../entities/extension-request/enum";
+import ExtensionRequestModel from "../../../entities/extension-request/model";
 import LeaseModel from "../../../entities/lease/model";
 import ParkingModel from "../../../entities/parking/model";
 import RentModel from "../../../entities/rent/model";
@@ -56,6 +58,11 @@ export const DetailedLeaseForOccupant = async (
         additionalParkingSlotCount * Number(perExtraParkingSlotCharge);
     }
 
+    const extensionRequest = await ExtensionRequestModel.findOne({
+      leaseId: lease._id,
+      status: ENUMExtRequest.Pending,
+    });
+
     return {
       statusCode: ENUMHttpStatusCode.OK,
       message: [],
@@ -67,10 +74,11 @@ export const DetailedLeaseForOccupant = async (
         dependants,
         parkingSlotCharges,
         parkingSlotNumbers: parkingSlots.map((slot) => slot.slotNumber),
+        extensionRequest
       },
     };
   } catch (error) {
-    console.log('error', error);
+    console.log("error", error);
     return {
       statusCode: ENUMHttpStatusCode.INTERNAL_SERVER_ERROR,
       message: ["Internal Server Error"],

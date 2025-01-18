@@ -13,6 +13,7 @@ import {
 import { GetOccupantLease } from "../controllers/dashboard/lease-controller/get-occupant-lease";
 import { DetailedLeaseForOccupant } from "../controllers/dashboard/lease-controller/read-detailed-lease-for-occupant";
 import { GetOccupantLeaseList } from "../controllers/dashboard/lease-controller/get-occupant-lease-list";
+import { ExtendLease } from "../controllers/dashboard/lease-controller/extend-lease";
 
 const leaseRoutes = Router();
 
@@ -62,18 +63,31 @@ leaseRoutes.get("/get-occupant-lease/:chiefOccupantId", async (req, res) => {
 
 // --------------------------------
 
-leaseRoutes.get("/read-detailed-occupant-lease/:chiefOccupantId", async (req, res) => {
-  const response = await DetailedLeaseForOccupant(req.params.chiefOccupantId);
-  return res.status(response.statusCode).json(response);
-});
+leaseRoutes.get(
+  "/read-detailed-occupant-lease/:chiefOccupantId",
+  async (req, res) => {
+    const response = await DetailedLeaseForOccupant(req.params.chiefOccupantId);
+    return res.status(response.statusCode).json(response);
+  }
+);
 
 // --------------------------------
 
-leaseRoutes.get("/get-occupant-lease-list/:chiefOccupantId", async (req, res) => {
-  const response = await GetOccupantLeaseList(req.params.chiefOccupantId);
-  return res.status(response.statusCode).json(response);
-});
+leaseRoutes.get(
+  "/get-occupant-lease-list/:chiefOccupantId",
+  async (req, res) => {
+    const response = await GetOccupantLeaseList(req.params.chiefOccupantId);
+    return res.status(response.statusCode).json(response);
+  }
+);
 
 // --------------------------------
+
+leaseRoutes.post("/extend-lease", async (req, res) => {
+  const response = await ExtendLease({
+    extensionRequestId: req.body.extensionRequestId,
+  });
+  return res.status(response.statusCode).json(response);
+});
 
 export default leaseRoutes;
