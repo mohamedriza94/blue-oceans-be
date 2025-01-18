@@ -5,7 +5,9 @@ export const UpdateNotificationById = async (notificationId: string) => {
     await NotificationModel.findByIdAndUpdate(notificationId, {
       status: "read",
     });
+    return;
   } catch (error) {
     console.error("Failed to add notification:", error);
+    return;
   }
 };

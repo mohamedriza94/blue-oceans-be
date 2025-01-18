@@ -73,7 +73,7 @@ export const CreateExtensionRequest = async (
       description: `Extension has been request for lease #${trimmedInputs.leaseId}`,
       relatedEntityId: resultObj._id!.toString(),
       link: "test",
-      icon: "ri-file-edit-line",
+      icon: "RiFileEditLine",
     });
 
     // ----------------------------------------------------------------
