@@ -22,6 +22,7 @@ import { IChiefOccupant } from "../../../entities/chief-occupant/i";
 import { sendTransactionalEmail } from "../../../configurations/email-api/brevo";
 import { DetailedLeaseForOccupant } from "./read-detailed-lease-for-occupant";
 import { ENUMExtRequest } from "../../../entities/extension-request/enum";
+import { createPaymentIntent } from "../../../services/stripe/payment-intent";
 
 type ExtendLeaseInputs = {
   extensionRequestId: string;
@@ -241,11 +242,19 @@ const createRentSlots = async (inputs: {
       amount = (endDay / daysInLastMonth) * rentAmountInUSD;
     }
 
+    const paymentIntent = await createPaymentIntent({
+      total: Math.round(amount),
+      description: `rent for ${leaseId} ${dueDate}`,
+      transferGroup: `rent for ${leaseId}`,
+    });
+
     rentSlots.push({
       leaseId,
       dueDate,
       amount: Math.round(amount),
       paymentStatus: ENUMRentPaymentStatus.Pending,
+      paymentIntentId: paymentIntent.id,
+      clientSecret: paymentIntent.client_secret,
     });
   }
 
