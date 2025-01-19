@@ -66,10 +66,10 @@ export const CreateLease = async (
       status: ENUMLeaseStatus.Active,
     });
     if (isLeaseExists) {
-      // return {
-      //   statusCode: ENUMHttpStatusCode.BAD_REQUEST,
-      //   message: ["This occupant already has an active lease"],
-      // };
+      return {
+        statusCode: ENUMHttpStatusCode.BAD_REQUEST,
+        message: ["This occupant already has an active lease"],
+      };
     }
 
     // Chief Occupant active
