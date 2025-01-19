@@ -369,6 +369,12 @@ export const CreateLease = async (
 
     // ----------------------------------------------------------------
 
+    await ApartmentModel.findByIdAndUpdate(involvedApartment._id, {
+      status: "Occupied",
+    });
+
+    // ----------------------------------------------------------------
+
     await session.commitTransaction();
 
     return {
