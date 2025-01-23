@@ -51,10 +51,6 @@ export const UpdateApartment = async (
     if (trimmedInputs.buildingId) {
       delete trimmedInputs.buildingId; // Prevent updating the buildingId directly
     }
-
-    if (trimmedInputs.status) {
-      delete trimmedInputs.status; 
-    }
     // END : INPUT PROCESSING
 
     // ----------------------------------------------------------------
